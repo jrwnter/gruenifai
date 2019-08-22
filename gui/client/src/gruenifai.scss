@@ -1,0 +1,461 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('http://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('http://fonts.googleapis.com/css?family=Pacifico');
+@import url('http://fonts.googleapis.com/css?family=Bungee&effect=outline');
+@import url('http://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Solid');
+@import url('http://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+.recharts-cartesian-axis-tick, .recharts-label {
+  font-size: 1rem;
+  font-family: "Source Code Pro";
+}
+
+$gruenifaigreen: #59fe95;
+$gruenifaiyellow: #c2fe59;
+$gruenifaired: #fe59c2;
+$gruenifaiblue: #59c2fe;
+$gruenifaiwhite: #fff;
+$gruenifaiblack: #000;
+$gruenifaiblackish: #1a1a1a;
+$gruenifaigrey: #707070;
+$gruenifaidarkgrey: #494949;
+
+// Update Bulma's global variables
+$black: $gruenifaiblack;
+$primary: $gruenifaigreen;
+$danger: $gruenifaired;
+$success: $gruenifaiblue;
+$link: $gruenifaiyellow;
+$message-background-color: $gruenifaiblackish;
+$message-body-border-color: $gruenifaigreen;
+$input-background-color: $gruenifaiblack;
+$input-border-color: $gruenifaigreen;
+$input-hover-border-color: $gruenifaiblue;
+$input-focus-border-color: $gruenifaired;
+$input-disabled-color: white;
+
+$slider-thumb-background: $gruenifaigreen;
+$slider-thumb-border: 0;
+$slider-track-background: $gruenifaired;
+
+$modal-card-head-background-color: $gruenifaiblackish;
+$modal-card-body-background-color: $gruenifaiblackish;
+$modal-card-foot-radius: 4px;
+$modal-card-body-radius: 4px;
+$modal-z: 10000;
+$card-background-color: $gruenifaiblackish;
+$card-footer-border-top: 1px solid $gruenifaidarkgrey;
+
+$table-background-color: transparent;
+$table-cell-heading-color: $gruenifaiwhite;
+$table-color: $gruenifaiwhite;
+$table-cell-border: 0px;
+break{
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar { width: 0 !important }
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.flip-card:active .flip-card-inner {
+  transform: rotateY(180deg);
+
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+  margin-left: -20px;
+}
+
+.flip-card-back {
+  background-color: $gruenifaiblackish;
+  color: white;
+  transform: rotateY(180deg);
+  z-index: 3;
+  margin-left: -25px;
+  padding-right: 50px;
+  margin-top: 4px;
+  width: 100%;
+  height: 119%;
+  padding-bottom: -10px
+}
+
+.molecule-basket > a {
+  color: $gruenifaigreen
+}
+
+.molecule-basket > a:hover {
+  color: $gruenifaiblue
+}
+
+.molecule-basket[data-count]:after {
+  position: absolute;
+  right: 20%;
+  top: 15%;
+  content: attr(data-count);
+  font-size: 50%;
+  padding: .6em;
+  border-radius: 999px;
+  line-height: .75em;
+  color: $gruenifaiblack;
+  text-align: center;
+  min-width: 2em;
+  background: $gruenifaired;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 2px;
+  border-color: $gruenifaired;
+}
+
+
+.modal-card, .card {
+  border-left: 4px solid $gruenifaigreen;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.card-content {
+  min-height: 250px;
+
+}
+
+.modal-card-foot {
+  border-top: 1px solid $gruenifaiblackish;
+}
+
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+
+
+.checkbox:hover {
+  color: $gruenifaigreen;
+}
+
+.table {
+  overflow-y: scroll;
+}
+
+.table th {
+  text-align: center;
+}
+
+.table td {
+  text-align: center !important;
+  background: transparent;
+  padding: 0em 0em;
+}
+
+.basket {
+  margin-right: 5px;
+}
+
+.marvinstyle {
+  overflow: 'hidden';
+  min-width: 600px;
+  min-height: 567px;
+  border-left: 4px solid $gruenifaigreen;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+
+.marvinstylessdialog {
+  overflow: 'hidden';
+  min-width: 400px;
+  min-height: 400px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+
+.delete {
+  background-color: $gruenifaigrey;
+}
+
+.modal-card-foot {
+  border-top: 1px solid $gruenifaidarkgrey;
+}
+
+.filledbasket {
+  fill: $gruenifaigrey;
+}
+
+.molbuy > a {
+  color: $gruenifaigrey;
+}
+
+.molbad > a {
+  color: $gruenifaired;
+}
+
+.molgreat > a {
+  color: $gruenifaigreen;
+}
+
+.card-footer-item > a:hover {
+  color: $gruenifaiblue;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 25px;
+  left: 10px;
+  top: 25px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: $gruenifaigreen;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: $gruenifaiblue;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: $gruenifaiblack;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+
+html {
+  background: $gruenifaiblack;
+}
+
+input[type="range"].slider {
+  margin: 0.5rem;
+}
+
+.particles {
+  position: fixed;
+  right: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.navbar {
+  border-bottom: 2px solid $gruenifaigreen;
+}
+
+.gruenifaibrand {
+  font-family: 'Pacifico';
+  font-size: 2.2em;
+  transform: rotate(-10deg);
+  margin-top: -5px;
+  margin-left: 38px;
+}
+
+.modeltitle {
+  background: $gruenifaiblue;
+  color: $gruenifaiblack;
+}
+
+
+.glow {
+  color: $gruenifaigreen;
+  text-align: center;
+  -webkit-animation: glow 5s ease-in-out infinite alternate;
+  -moz-animation: glow 5s ease-in-out infinite alternate;
+  animation: glow 5s ease-in-out infinite alternate;
+}
+
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px $gruenifaigreen, 0 0 20px $gruenifaigreen, 0 0 30px $gruenifaigreen, 0 0 40px $gruenifaigreen;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px $gruenifaigreen, 0 0 20px $gruenifaiyellow, 0 0 25px $gruenifaiblue, 0 0 30px $gruenifaigreen, 0 0 40px $gruenifaigreen, 0 0 50px $gruenifaigreen;
+  }
+}
+
+
+li, .models {
+  margin-top: 5px;
+}
+
+.noselect * {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome and Opera */
+}
+
+#points ul li {
+  margin: 0 20px 20px 0;
+  vertical-align: top
+}
+
+.point {
+  fill: $gruenifaiblue;
+}
+
+.line {
+  stroke: $gruenifaired;
+}
+
+.point:hover {
+  fill: $gruenifaigreen;
+}
+
+.notselected {
+  position: relative;
+}
+
+.selected {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: green;
+  -moz-transition: background .3s linear;
+  -webkit-transition: background .3s linear;
+  -o-transition: background .3s linear;
+  transition: background .3s linear;
+  animation: shake 0.5s;
+
+}
+
+.deselected {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: red;
+  -moz-transition: background .3s linear;
+  -webkit-transition: background .3s linear;
+  -o-transition: background .3s linear;
+  transition: background .3s linear;
+  opacity: 0.6;
+  animation: shake 0.5s;
+
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+
+.App {
+  text-align: center;
+  font-family: 'Source Code Pro', sans-serif;
+  font-size: 1.2em;
+
+}
+
+svg {
+  font-family: 'Abel', sans-serif;
+
+}
