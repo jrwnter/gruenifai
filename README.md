@@ -17,3 +17,6 @@ Implementation grünif.ai: Interactive multi-parameter optimization of molecules
 * conda env create -f environment.yml
 * cd sever
 * python api.py
+
+## installation computing engine
+--> ROBIN
