@@ -3,3 +3,5 @@ Implementation grünif.ai: Interactive multi-parameter optimization of molecules
 
 # Showcase of functionality
 [Showcase](https://www.youtube.com/watch?v=7KAgEb5twXg)
+
+# installation instructions
