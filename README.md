@@ -8,7 +8,7 @@ A web application is best explained through a live demo. Please watch our video 
 # Installation instructions
 ## GUI components
 * install [nodejs](https://nodejs.org/en/download/package-manager/)
-* install [yarn] (https://yarnpkg.com/lang/en/docs/install/#mac-stable) 
+* install [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) 
 * clone repository
 * cd <REPOSITORY_DIR>/gruenifai/gui/client
 * yarn install
