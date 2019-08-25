@@ -1,7 +1,8 @@
 # gruenif.ai
-Implementation grünif.ai: Interactive multi-parameter optimization of molecules in a continuous vector space
+gruenif.ai is a web application for interactive multi-parameter optimization of molecules in a continous vector space.
 
 # Showcase of functionality
+A web application is best explained through a live demo. Please watch our video for a detailed explanation of the functionality:
 [Showcase](https://www.youtube.com/watch?v=7KAgEb5twXg)
 
 # installation instructions
