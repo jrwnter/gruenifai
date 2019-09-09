@@ -1,5 +1,7 @@
 import psycopg2 as pg
-from cdddswarm.optimization.objectives.registry import model_description
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+from gruenifai.backend.registry import model_description
+from gruenifai.backend.postgres.queries import models_to_db
 
 def create_session(conn):
     SQL = '''
@@ -41,8 +43,13 @@ def create_scoring_function(conn):
 
 
 if __name__=='__main__':
-    #conn = pg.connect("dbname=gruenifai user=postgres password=postgres host=by0slm.de.bayer.cnb port=5432")
-    conn = pg.connect("dbname=postgres user=postgres password=postgres host=127.0.0.1 port=5432")
+
+    if True:
+        conn = pg.connect(dbname='postgres', host='localhost')
+        conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+        cur = conn.cursor()
+        cur.execute('CREATE DATABASE gruenifai')
+    conn = pg.connect(dbname='gruenifai', host='localhost')
 
     create_session(conn)
     conn.commit()
@@ -53,5 +60,4 @@ if __name__=='__main__':
     conn.commit()
     conn.close()
 
-    from cdddswarm.server.postgres.queries import models_to_db
     models_to_db(model_description)

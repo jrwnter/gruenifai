@@ -1,0 +1,13 @@
+name: gfaitest
+channels:
+  - anaconda
+  - defaults
+  - conda-forge
+dependencies:
+  - postgresql
+  - psycopg2
+  - flask
+  - flask_restplus
+  - requests
+  - nodejs
+  - yarn

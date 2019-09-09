@@ -7,8 +7,7 @@ conn = None
 def get_database_connection():
     global conn
     if conn is None:
-        #conn = pg.connect("dbname=gruenifai user=postgres password=postgres host=by0slm.de.bayer.cnb port=5432")
-        conn = pg.connect("dbname=postgres user=postgres password=postgres host=127.0.0.1 port=5432")
+        conn = pg.connect(dbname='gruenifai', host='localhost')
     return conn
 
 
