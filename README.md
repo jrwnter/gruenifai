@@ -19,6 +19,8 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * pyzmq
 ## Anaconda
 1. terminal
+* clone and install [cddd](https://github.com/jrwnter/cddd)
+* clone and install [mso](https://github.com/jrwnter/mso)
 * cd <REPOSITORY_DIR>
 * conda env create -f environment.yml ( + activate this environment)
 * pip install .
