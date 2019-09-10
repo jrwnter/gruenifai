@@ -22,6 +22,8 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * cd <REPOSITORY_DIR>
 * conda env create -f environment.yml ( + activate this environment)
 * pip install .
+* cd <REPOSITORY_DIR>/gruenifai/backend/postgres
+* python create_db.py (assumes a running postgres server running locally)
 * cd <REPOSITORY_DIR>/gruenifai/gui/client
 * yarn install
 * yarn start
@@ -29,8 +31,6 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * cd <REPOSITORY_DIR>/gruenifai/gui/server
 * python api.py
 3. terminal
-* cd <REPOSITORY_DIR>/gruenifai/backend/postgres
-* python create_db.py (assumes a running postgres server running locally)
 * cd <REPOSITORY_DIR>/gruenifai/backend/
 * python start_inference_server.py
 4. terminal
