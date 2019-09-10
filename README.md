@@ -37,4 +37,4 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * cd <REPOSITORY_DIR>/gruenifai/backend/
 * python flaskserver.py
 
-The web app can now be accessed under on port 3000
+The web app can now be accessed at port 3000
