@@ -11,7 +11,6 @@ from rdkit.Chem import rdDepictor
 from rdkit.Chem.Draw import rdMolDraw2D
 from sklearn.cluster import KMeans
 from scipy.spatial import distance
-from collections import Counter
 import json
 import datetime
 import uuid
@@ -23,7 +22,7 @@ app = Flask(__name__)
 api = Api(app)
 
 def connect_db():
-    conn = pg.connect("dbname=postgres user=postgres password=postgres host=by0sll.de.bayer.cnb port=5432")
+    conn = pg.connect(dbname='gruenifai', host='localhost')
     return conn
 
 def get_db_conn():

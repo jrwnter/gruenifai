@@ -1,5 +1,5 @@
 #!flask/bin/python
-
+import argparse
 from functools import partial
 from flask import Flask, jsonify, make_response, request
 import numpy as np
@@ -14,7 +14,15 @@ from gruenifai.backend.registry import models_by_name
 
 app = Flask(__name__)
 
-np.random.seed(1234)
+def add_arguments(parser):
+    parser.add_argument("--port_inference", default=5530, type=int)
+    parser.add_argument("--port_mso", default=8897, type=int)
+    parser.add_argument("--num_swarms", default=1, type=int)
+    parser.add_argument("--num_particles", default=150, type=int)
+    parser.add_argument("--num_workers", default=5, type=int)
+    parser.add_argument("--num_steps", default=5, type=int)
+
+    return parser
 
 @app.errorhandler(404)
 def not_found(error):
@@ -24,10 +32,6 @@ def not_found(error):
 @app.route('/')
 def index():
     return "Hello, World!"
-
-#inferenceServer = InferenceModel(gpu_mem_frac=0.3, use_gpu=True)
-#inferenceServer = InferenceServer(num_servers=NUM_SERVER, port_frontend='5585', port_backend='5586')
-inferenceServer = InferenceServer(port_frontend=5527, use_running=True)
 
 """@app.route('/scoring_functions/', methods=['GET'])
 def get_models():
@@ -61,7 +65,7 @@ def evaluation_for_run_id(run_id):
     mol_block = query_molecule
     query_sml = Chem.MolToSmiles(Chem.MolFromMolBlock(mol_block, strictParsing=False))
     optimizer = MPPSOOptimizer.from_query(query_sml, num_part=num_particles, num_swarms=num_swarms,
-                                      inference_server=inferenceServer,
+                                      inference_model=inferenceServer,
                                       scoring_functions=scoring_functions, num_workers=num_workers)
     output = optimizer.evaluate_query()
     swarms = [swarm.to_dict() for swarm in output]
@@ -92,10 +96,10 @@ def run_optimization_for_run_id(run_id):
         num_workers = 8
         num_steps = 2
     else:
-        num_particles = 150
-        num_swarms = 16
-        num_workers = 16
-        num_steps = 5
+        num_particles = FLAGS.num_particles
+        num_swarms = FLAGS.num_swarms
+        num_workers = FLAGS.num_workers
+        num_steps = FLAGS.num_steps
 
 
     # Start LO (in case the initial query was not evaluated)
@@ -108,7 +112,7 @@ def run_optimization_for_run_id(run_id):
             init_smiles=query_sml,
             num_part=num_particles,
             num_swarms=num_swarms,
-            inference_server=inferenceServer,
+            inference_model=inferenceServer,
             scoring_functions=scoring_functions,
             num_workers=num_workers)
 
@@ -120,7 +124,7 @@ def run_optimization_for_run_id(run_id):
             print('start Lead Optimization')
             query_sml = completed['swarms'][0]['particles'][0]['smiles']
             optimizer = MPPSOOptimizer.from_query(query_sml, num_part=num_particles, num_swarms=num_swarms,
-                                                  inference_server=inferenceServer,
+                                                  inference_model=inferenceServer,
                                                   scoring_functions=scoring_functions, num_workers=num_workers)
 
         else:
@@ -137,21 +141,6 @@ def run_optimization_for_run_id(run_id):
 
 
 def get_scoring_function_from_dict(dictionary):
-    def train_user_score_model(good_smiles, bad_smiles):
-        smls = good_smiles + bad_smiles
-        x = inferenceServer.seq_to_emb(smls)
-        y = np.concatenate([np.ones(len(good_smiles)), np.zeros(len(bad_smiles))])
-        clf = SVC(class_weight="balanced", probability=True).fit(x, y)
-
-        return clf.predict_proba
-
-    def predict_proba_wrapper(function, x):
-        proba_pos = function(x)[:, 1]
-        return proba_pos
-
-    def user_score_default(x):
-        return 0.5 * np.ones(len(x))
-
     name = dictionary['name']
     desirability = dictionary.get('desirability', None)
     weight = dictionary.get('weight', 100)
@@ -184,6 +173,25 @@ def get_scoring_function_from_dict(dictionary):
             desirability=desirability,
             is_mol_func=is_mol_func)
 
+def train_user_score_model(good_smiles, bad_smiles):
+    smls = good_smiles + bad_smiles
+    x = inferenceServer.seq_to_emb(smls)
+    y = np.concatenate([np.ones(len(good_smiles)), np.zeros(len(bad_smiles))])
+    clf = SVC(class_weight="balanced", probability=True).fit(x, y)
+
+    return clf.predict_proba
+
+def predict_proba_wrapper(function, x):
+    proba_pos = function(x)[:, 1]
+    return proba_pos
+
+def user_score_default(x):
+    return 0.5 * np.ones(len(x))
+
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=8897)
+    parser = argparse.ArgumentParser()
+    add_arguments(parser)
+    FLAGS, UNPARSED = parser.parse_known_args()
+    inferenceServer = InferenceServer(port_frontend=FLAGS.port_inference, use_running=True)
+    app.run(debug=False, host='0.0.0.0', port=FLAGS.port_mso)

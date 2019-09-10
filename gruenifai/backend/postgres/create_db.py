@@ -43,14 +43,18 @@ def create_scoring_function(conn):
 
 
 if __name__=='__main__':
+    db_name = "gruenifai"
+    drop_statement = 'DROP DATABASE IF EXISTS {};'.format(db_name)
+    create_statement = 'CREATE DATABASE {};'.format(db_name)
 
-    if True:
-        conn = pg.connect(dbname='postgres', host='localhost')
-        conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        cur = conn.cursor()
-        cur.execute('CREATE DATABASE gruenifai')
+    conn = pg.connect(dbname='postgres', host='localhost')
+    conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = conn.cursor()
+    cur.execute(drop_statement)
+    cur.execute(create_statement)
+
     conn = pg.connect(dbname='gruenifai', host='localhost')
-
     create_session(conn)
     conn.commit()
 
