@@ -18,7 +18,7 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * yarn
 * pyzmq
 * marvinjs for molecule sketching: https://chemaxon.com/products/marvin-js
-## Anaconda
+## Installation
 1. terminal
 * clone and install [cddd](https://github.com/jrwnter/cddd)
 * clone and install [mso](https://github.com/jrwnter/mso)
