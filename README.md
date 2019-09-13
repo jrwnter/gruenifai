@@ -35,9 +35,9 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * python api.py
 3. terminal
 * cd <REPOSITORY_DIR>/gruenifai/backend/
-* python start_inference_server.py
+* python start_inference_server.py --model_dir <PATH_TO_CDDD_MODEL> --device <CUDA_DEVICE (e.g. 1 3 4)> --num_servers <NUMBER_OF_SERVERS>
 4. terminal
 * cd <REPOSITORY_DIR>/gruenifai/backend/
-* python flaskserver.py
+* python flaskserver.py --num_swarms=<NUMBER_OF_SWARMS> --num_workers=<NUMBER_OF_WORKERS>
 
 The web app can now be accessed at port 3000
