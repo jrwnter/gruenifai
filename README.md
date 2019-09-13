@@ -31,6 +31,7 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * cd <REPOSITORY_DIR>/gruenifai/gui/client
 * yarn install
 * yarn start
+* cp marvinjs forlder into /gruenifai/gui/client/public
 2. terminal
 * cd <REPOSITORY_DIR>/gruenifai/gui/server
 * python api.py
