@@ -9,6 +9,7 @@ A web application is best explained through a live demo. Please watch our video 
 In its current form grünif.ai is commposed of multiple microservices. We recommend the use of Docker to compose all microservises into one running environment.
 
 ## Installation using Docker
+* copy marvinjs forlder into <REPOSITORY_DIR>/gruenifai/gui/client/public
 * cd <REPOSITORY_DIR>/gruenifai
 * docker compose up
 
