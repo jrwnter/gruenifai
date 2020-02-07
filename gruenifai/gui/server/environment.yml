@@ -1,15 +1,13 @@
-name: gfaitest
+name: gfai
 channels:
+  - rdkit
   - anaconda
   - defaults
   - conda-forge
 dependencies:
+  - rdkit
   - psycopg2
   - flask
-  - flask_restplus
+  - flask-restplus
   - requests
-  - nodejs
-  - yarn
-  - zeromq
-  - psycopg2
-  - json
+  - scikit-learn

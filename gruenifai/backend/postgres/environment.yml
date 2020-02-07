@@ -1,0 +1,10 @@
+name: postgres
+
+channels:
+  - defaults
+  - anaconda
+
+dependencies:
+  - anaconda::python=3.6
+  - anaconda::psycopg2
+  - json

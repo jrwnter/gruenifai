@@ -20,7 +20,7 @@ models = [(emb_functions.bace_score_512, 'BACE1', 'biological activity', False),
 
 models_by_name = {name: (func, desc, is_mol_func) for func, name, desc, is_mol_func in models}
 
-model_description =[{
+model_description = [{
     "name": "distance score",
     "description": "scores based on the cosine distance in CDDD space compared to input structure.",
     "desirability": [{"x": 0, "y": 1.0}, {"x": 1, "y": 0}],

@@ -22,7 +22,7 @@ app = Flask(__name__)
 api = Api(app)
 
 def connect_db():
-    conn = pg.connect(dbname='gruenifai', host='localhost')
+    conn = pg.connect(dbname='gruenifai', host='database', user='postgres', password='postgres')
     return conn
 
 def get_db_conn():
@@ -201,7 +201,7 @@ class LOJob(Resource):
             query_assessment_id = create_run_entry_in_DB(session_id, models)
             query_assessment_flag = True
             print("start request")
-            res = r.post("http://by0sll.de.bayer.cnb:8897/evaluatequery/", json={'run_id': str(query_assessment_id)})
+            res = r.post("http://backend:8897/evaluatequery/", json={'run_id': str(query_assessment_id)})
             print("got data")
             query_assessment_run = get_run_data_from_DB_by_id(query_assessment_id)
             query_assessment = parse_swarms_and_make_unique(query_assessment_run, False)
@@ -211,7 +211,7 @@ class LOJob(Resource):
         run_id = create_run_entry_in_DB(session_id, models)
 
         if 1:
-            res = r.post("http://by0sll.de.bayer.cnb:8897/optimization/", json={'run_id': str(run_id)})
+            res = r.post("http://backend:8897/optimization/", json={'run_id': str(run_id)})  # TODO get host and port from some config
             #res = r.post("http://by0slm.de.bayer.cnb:8896/optimization/", json={'run_id':_id})
             run = get_run_data_from_DB_by_id(run_id)
         if 0:

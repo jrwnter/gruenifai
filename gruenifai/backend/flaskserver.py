@@ -5,18 +5,26 @@ from flask import Flask, jsonify, make_response, request
 import numpy as np
 from sklearn.svm import SVC
 import json
+import os
+import logging
 from rdkit import Chem
 from cddd.inference import InferenceServer
 from mso.objectives.scoring import ScoringFunction
 from mso.optimizer import MPPSOOptimizer
-from gruenifai.backend.postgres.queries import get_runs_for_session, get_session_from_db, get_run_from_db, run_to_db
-from gruenifai.backend.registry import models_by_name
+from postgres.queries import get_runs_for_session, get_session_from_db, get_run_from_db, run_to_db
+from postgres.create_db import create_db
+from registry import models_by_name, model_description
+logging.getLogger('tensorflow').disabled = True
 
 app = Flask(__name__)
 
 def add_arguments(parser):
-    parser.add_argument("--port_inference", default=5530, type=int)
+    parser.add_argument("--model_dir", default="cddd/default_model")
+    parser.add_argument("--device", default="-1", type=str, nargs="+")
+    parser.add_argument("--port_frontend", default=5530, type=int)
+    parser.add_argument("--port_backend", default=5531, type=int)
     parser.add_argument("--port_mso", default=8897, type=int)
+    parser.add_argument("--num_servers", default=1, type=int)
     parser.add_argument("--num_swarms", default=1, type=int)
     parser.add_argument("--num_particles", default=150, type=int)
     parser.add_argument("--num_workers", default=5, type=int)
@@ -193,5 +201,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     add_arguments(parser)
     FLAGS, UNPARSED = parser.parse_known_args()
-    inferenceServer = InferenceServer(port_frontend=FLAGS.port_inference, use_running=True)
+    os.environ['CUDA_VISIBLE_DEVICES'] = ",".join(FLAGS.device)
+    inferenceServer = InferenceServer(
+        num_servers=FLAGS.num_servers,
+        maximum_iterations=150,
+        port_frontend=FLAGS.port_frontend,
+        port_backend=FLAGS.port_backend,
+        model_dir=FLAGS.model_dir)
+    create_db(db_name="gruenifai", model_description=model_description)
     app.run(debug=False, host='0.0.0.0', port=FLAGS.port_mso)

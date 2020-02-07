@@ -1,0 +1,19 @@
+name: cddd
+
+channels:
+  - rdkit
+  - defaults
+  - conda-forge
+
+dependencies:
+  - anaconda::python=3.6
+  - rdkit::rdkit=2018.03.3.0
+  - anaconda::scikit-learn=0.19.1
+  - curl
+  - unzip
+  - pyzmq
+  - psycopg2
+  - flask
+  - flask-restplus
+  - requests
+  - postgresql

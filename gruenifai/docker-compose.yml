@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: 'postgres'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+    ports:
+      - 5432:5432
+  backend:
+    build:
+      context: backend
+    links:
+      - database
+    expose:
+      - 8897
+  gui_backend:
+    build:
+      context: gui/server
+    links:
+      - database
+    expose:
+      - 5000
+  gui_client:
+    build:
+      context: gui/client
+    links:
+      - gui_backend
+    expose:
+      - 80
+    ports:
+      - 8777:80
