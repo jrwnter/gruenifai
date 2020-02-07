@@ -6,8 +6,17 @@ A web application is best explained through a live demo. Please watch our video 
 [Showcase](https://www.youtube.com/watch?v=7KAgEb5twXg)
 
 # Installation and setting up
-In its current form grünif.ai is commposed of 4 microservices that have to be started in individual terminals. We recomend the use of Anaconda to setup up the enviorment that can run both Python backend and ReactJS frontend.
-## Dependencies
+In its current form grünif.ai is commposed of multiple microservices. We recommend the use of Docker to compose all microservises into one running environment.
+
+## Installation using Docker
+* copy marvinjs forlder into <REPOSITORY_DIR>/gruenifai/gui/client/public
+* cd <REPOSITORY_DIR>/gruenifai
+* docker compose up
+
+The web app can now be accessed at http://localhost:8777/
+
+## Installation using Anaconda
+### Dependencies
 * [cddd](https://github.com/jrwnter/cddd)
 * [mso](https://github.com/jrwnter/mso)
 * psycopg2
@@ -18,7 +27,7 @@ In its current form grünif.ai is commposed of 4 microservices that have to be s
 * yarn
 * pyzmq
 * marvinjs for molecule sketching: https://chemaxon.com/products/marvin-js
-## Installation
+### Installation
 1. terminal
 * clone and install [cddd](https://github.com/jrwnter/cddd)
 * clone and install [mso](https://github.com/jrwnter/mso)
