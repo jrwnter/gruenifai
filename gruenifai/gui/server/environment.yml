@@ -5,8 +5,10 @@ channels:
   - defaults
   - conda-forge
 dependencies:
+  - xorg-libxrender
   - rdkit
   - psycopg2
+  - Werkzeug==0.16.1
   - flask
   - flask-restplus
   - requests

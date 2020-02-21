@@ -13,7 +13,9 @@ dependencies:
   - unzip
   - pyzmq
   - psycopg2
+  - Werkzeug==0.16.1
   - flask
   - flask-restplus
   - requests
   - postgresql
+  - xorg-libxrender

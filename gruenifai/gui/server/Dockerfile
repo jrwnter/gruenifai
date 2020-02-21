@@ -5,7 +5,6 @@ ENV LANG C
 WORKDIR /home/server
 
 COPY environment.yml api.py ./
-RUN conda update -n base conda
 
 RUN conda env create -f environment.yml
 

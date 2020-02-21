@@ -13,6 +13,9 @@ services:
   backend:
     build:
       context: backend
+      args:
+        - http_proxy
+        - https_proxy
     links:
       - database
     expose:
@@ -20,6 +23,9 @@ services:
   gui_backend:
     build:
       context: gui/server
+      args:
+        - http_proxy
+        - https_proxy
     links:
       - database
     expose:
@@ -27,6 +33,9 @@ services:
   gui_client:
     build:
       context: gui/client
+      args:
+        - http_proxy
+        - https_proxy
     links:
       - gui_backend
     expose:

@@ -1,7 +1,9 @@
 FROM node:latest as build-deps
 WORKDIR /usr/src/app
+RUN wget https://peter-ertl.com/jsme/download/JSME_2017-02-26.zip && unzip JSME_2017-02-26.zip && mv JSME_2017-02-26 jsme && mv jsme public/
+
 COPY package.json ./
-RUN yarn
+RUN yarn install
 COPY . ./
 RUN yarn build
 

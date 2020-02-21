@@ -14,6 +14,7 @@ import {modelValidation} from './Validation';
 import {ATTRACTIVENESS_SCORE} from './Models';
 import {getMinY, getMaxY} from './helper';
 import {exampleResults} from "./ExampleResults";
+import MoleculeSketcher from './MoleculeSketcher';
 
 class Main extends React.PureComponent {
     constructor(props) {
@@ -108,8 +109,7 @@ class Main extends React.PureComponent {
             let chartData = [res['query_stats'],res['stats']];
             let yMin = getMinY(chartData);
             let yMax = getMaxY(chartData);
-            console.log("chartData", chartData)
-            console.log("WHY NOT", yMin, yMax);
+
             this.setGlobal({
                 results: res['results'],
                 session_id: res['session_id'],
@@ -173,7 +173,7 @@ class Main extends React.PureComponent {
                     <div className="container" style={{marginTop: 100, marginBottom: 100}}>
                         <div className="columns">
                             <div className="column is-half is-centered has-text-primary">
-                                <Marvin structure={INITSTRUCTURE} id="sketch" className='marvinstyle'
+                                <MoleculeSketcher structure={INITSTRUCTURE} id="sketch" className='marvinstyle'
                                         onStructureChange={this.handleStructureChange}/>
                                 <div>
                                     <label className="checkbox">

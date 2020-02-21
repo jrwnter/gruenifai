@@ -7,7 +7,6 @@ const ErrMsg = () => {
     const closeErrMsg = (msg) => {
 
         let newErrMsg = remove(errmsg, (oldMsg) => {
-            console.log("CHHHHECKK", oldMsg,msg, oldMsg===msg)
             return oldMsg !== msg
         })
         setErrMsg(newErrMsg);
