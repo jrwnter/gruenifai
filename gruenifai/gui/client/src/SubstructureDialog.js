@@ -1,13 +1,11 @@
 import React, {Component} from 'reactn';
 import {Fragment} from 'react';
-import {INITSTRUCTURE} from "./Constants";
 import MoleculeSketcher from './MoleculeSketcher';
 
 
 class SubstructureDialog extends Component {
     constructor(props) {
         super(props)
-        console.log('reinitializes')
         this.updateSubstructure = this.updateSubstructure.bind(this);
         this.saveSubstructure = this.saveSubstructure.bind(this);
         this.state = {substructure:this.setInitStructure()}
@@ -19,6 +17,7 @@ class SubstructureDialog extends Component {
     }
 
     updateSubstructure(substructure) {
+        console.log(substructure)
         this.setState({substructure});
     }
     saveSubstructure(){
@@ -39,7 +38,7 @@ class SubstructureDialog extends Component {
                         className="modeltitle">{this.props.name}</span></h4>
                     <div>
 
-                        <MoleculeSketcher className='marvinstylessdialog' structure={INITSTRUCTURE} id={'substructure'} 
+                        <MoleculeSketcher className='marvinstylessdialog' divId={"substructure"}
                                         onStructureChange={this.updateSubstructure}/>
                     </div>
 

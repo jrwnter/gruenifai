@@ -16,7 +16,7 @@ class MoleculeSketcher extends Component {
       if (JSApplet) {
         clearInterval(interval);
         this.jsmeApplet = new JSApplet.JSME(
-          "jsme_container",
+          this.props.divId,
           `${this.props.width}px`,
           "600px"
         );
@@ -27,7 +27,7 @@ class MoleculeSketcher extends Component {
   }
 
   render() {
-    return <div id="jsme_container"></div>;
+    return <div id={this.props.divId}></div>;
   }
 }
 

@@ -94,7 +94,6 @@ class Main extends React.PureComponent {
         
         this.setGlobal({results: [], session_id: null});
         history.push("/results");
-        console.log('I WILL NOW SUBMIT THE LO JOB')
         fetch("/api/submit_LO_job"
             , {
                 headers: {
@@ -126,7 +125,7 @@ class Main extends React.PureComponent {
             .then((res) => res.json())
             .then((res) => {
                 this.setGlobal({allModels: res});
-                //this.setGlobal({models: res.slice(4,6)})
+
             })
     }
 
@@ -173,7 +172,7 @@ class Main extends React.PureComponent {
                     <div className="container" style={{marginTop: 100, marginBottom: 100}}>
                         <div className="columns">
                             <div className="column is-half is-centered has-text-primary">
-                                <MoleculeSketcher structure={INITSTRUCTURE} id="sketch" className='marvinstyle'
+                                <MoleculeSketcher structure={INITSTRUCTURE} divId="sketch" className='marvinstyle'
                                         onStructureChange={this.handleStructureChange}/>
                                 <div>
                                     <label className="checkbox">
