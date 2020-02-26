@@ -170,6 +170,9 @@ def get_scoring_function_from_dict(dictionary):
             if name == "distance score":
                 target = inferenceServer.seq_to_emb(Chem.MolToSmiles(Chem.MolFromMolBlock(kwargs["query"])))
                 func = partial(func, target=target)
+            elif (name == "substructure match") | (name == "substructure exclusion"):
+                query = Chem.MolFromMolBlock(kwargs["query"])
+                func = partial(func, query=query)
             else:
                 func = partial(func, **kwargs)
     if func:
