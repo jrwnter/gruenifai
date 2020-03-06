@@ -1,6 +1,7 @@
 #!flask/bin/python
 import argparse
 from functools import partial
+from tensorflow.python.client import device_lib
 from flask import Flask, jsonify, make_response, request
 import numpy as np
 from sklearn.svm import SVC
@@ -18,17 +19,22 @@ logging.getLogger('tensorflow').disabled = True
 
 app = Flask(__name__)
 
+dev_list = [x.name[-1] for x in device_lib.list_local_devices() if x.device_type == 'GPU']
+DEVICES = ','.join(dev_list)
+NUM_GPUS = len(dev_list)
+
+
 def add_arguments(parser):
     parser.add_argument("--model_dir", default="cddd/default_model")
-    parser.add_argument("--device", default="-1", type=str, nargs="+")
+    parser.add_argument("--device", default=DEVICES, type=str, nargs="+")
     parser.add_argument("--port_frontend", default=5530, type=int)
     parser.add_argument("--port_backend", default=5531, type=int)
     parser.add_argument("--port_mso", default=8897, type=int)
-    parser.add_argument("--num_servers", default=1, type=int)
-    parser.add_argument("--num_swarms", default=1, type=int)
+    parser.add_argument("--num_servers", default=NUM_GPUS * 2, type=int)
+    parser.add_argument("--num_swarms", default=5, type=int)
     parser.add_argument("--num_particles", default=150, type=int)
-    parser.add_argument("--num_workers", default=5, type=int)
-    parser.add_argument("--num_steps", default=5, type=int)
+    parser.add_argument("--num_workers", default=25, type=int)
+    parser.add_argument("--num_steps", default=10, type=int)
 
     return parser
 

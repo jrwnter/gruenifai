@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: 'postgres'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+    ports:
+      - 5432:5432
+  backend:
+    image: jrwnter/gruenifai:backend_gpu
+    links:
+      - database
+    expose:
+      - 8897
+  gui_backend:
+    image: jrwnter/gruenifai:gui_backend
+    links:
+      - database
+    expose:
+      - 5000
+  gui_client:
+    image: jrwnter/gruenifai:gui_client
+    links:
+      - gui_backend
+    expose:
+      - 80
+    ports:
+      - 8777:80

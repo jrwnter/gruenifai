@@ -108,3 +108,6 @@ venv.bak/
 
 # my stuff
 test/
+gruenifai/backend/mso/
+gruenifai/backend/cddd/
+

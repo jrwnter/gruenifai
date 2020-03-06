@@ -1,6 +1,8 @@
 FROM node:latest as build-deps
 WORKDIR /usr/src/app
 
+RUN echo $HTTPS_PROXY
+
 COPY package.json ./
 RUN yarn install
 COPY . ./
