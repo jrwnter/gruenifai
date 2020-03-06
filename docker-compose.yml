@@ -11,31 +11,19 @@ services:
     ports:
       - 5432:5432
   backend:
-    build:
-      context: backend
-      args:
-        - http_proxy
-        - https_proxy
+    image: jrwnter/gruenifai:backend_cpu
     links:
       - database
     expose:
       - 8897
   gui_backend:
-    build:
-      context: gui/server
-      args:
-        - http_proxy
-        - https_proxy
+    image: jrwnter/gruenifai:gui_backend
     links:
       - database
     expose:
       - 5000
   gui_client:
-    build:
-      context: gui/client
-      args:
-        - http_proxy
-        - https_proxy
+    image: jrwnter/gruenifai:gui_client
     links:
       - gui_backend
     expose:
