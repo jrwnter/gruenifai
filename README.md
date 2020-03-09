@@ -8,7 +8,7 @@ A web application is best explained through a live demo. Please watch our video 
 # Installation and setting up
 In its current form grünifai is commposed of multiple microservices. We recommend the use of Docker to compose all microservises into one running environment.
 
-## Installation using Docker#
+## Installation using Docker
 * clone this environment.
 * cd <REPOSITORY_DIR>
 * docker compose up
@@ -16,6 +16,7 @@ In its current form grünifai is commposed of multiple microservices. We recomme
 The web app can now be accessed at http://localhost:8777/
 
 ## Installation using Anaconda
+The repository can also be installed from scratch. That way GPU support can be enabled as well. However, currently, we recommend using the Docker installation described above.
 ### Dependencies
 * [cddd](https://github.com/jrwnter/cddd)
 * [mso](https://github.com/jrwnter/mso)
