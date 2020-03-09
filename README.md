@@ -6,11 +6,11 @@ A web application is best explained through a live demo. Please watch our video 
 [Showcase](https://www.youtube.com/watch?v=7KAgEb5twXg)
 
 # Installation and setting up
-In its current form grünif.ai is commposed of multiple microservices. We recommend the use of Docker to compose all microservises into one running environment.
+In its current form grünifai is commposed of multiple microservices. We recommend the use of Docker to compose all microservises into one running environment.
 
-## Installation using Docker
-* copy marvinjs forlder into <REPOSITORY_DIR>/gruenifai/gui/client/public
-* cd <REPOSITORY_DIR>/gruenifai
+## Installation using Docker#
+* clone this environment.
+* cd <REPOSITORY_DIR>
 * docker compose up
 
 The web app can now be accessed at http://localhost:8777/
