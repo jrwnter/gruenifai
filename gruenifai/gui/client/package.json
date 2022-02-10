@@ -15,7 +15,7 @@
     "d3-scale": "^2.2.2",
     "global": "^4.4.0",
     "lodash": "^4.17.11",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.0-alpha.1",
     "react-autocomplete": "^1.8.1",
     "react-burger-menu": "^2.6.10",
